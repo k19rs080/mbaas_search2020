@@ -12,17 +12,17 @@
     // NCMB アクセスの準備
     let ncmb = new NCMB(appKey, clientKey);
     // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-    const db = "Search";
+    const db = "Search4";
     // テスト用データを用意
     const init_data = [
-      {name: "オアシス", level: 450, attack:"チキン南蛮定食", defence: 2500},
-      {name: "アルテリア", level:500, attack: 2500, defence: 2100},
-      {name: "クオーレ", level: 480, attack: 1900, defence: 1000},
-      {name: "クラブハウス", level:300, attack: 1500, defence: 1600},
-      {name: "オアシス", level: 300, attack: 1600, defence: 1400},
-      {name: "アルテリア", level:500, attack: 1500, defence: 1600},
-      {name: "クオーレ", level: 550, attack: 1500, defence: 1600},
-      {name: "クラブハウス", level: 400, attack: 1500, defence: 1600},
+      {name: "オアシス", level: 450, attack:"南蛮定食"},
+      {name: "アルテリア", level:500, attack: "カレーライス"},
+      {name: "クオーレ", level: 480, attack: "カルボナーラ"},
+      {name: "クラブハウス", level:300, attack: "ペッパーレモン"},
+      {name: "オアシス", level: 500, attack:"チキン南蛮"},
+      {name: "アルテリア", level:500, attack: "ラーメン"},
+      {name: "クオーレ", level: 550, attack: "タコライス"},
+      {name: "クラブハウス", level: 400, attack: "黄金カレー"},
     ];
 
     $(function() {
