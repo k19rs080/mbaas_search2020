@@ -12,17 +12,17 @@
     // NCMB アクセスの準備
     let ncmb = new NCMB(appKey, clientKey);
     // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-    const db = "Search5";
+    const db = "Search10";
     // テスト用データを用意
     const init_data = [
-      {name: "オアシス", level: 450, food:"南蛮定食"},
-      {name: "アルテリア", level:500, food: "カレーライス"},
-      {name: "クオーレ", level: 480, food: "カルボナーラ"},
-      {name: "クラブハウス", level:300, food: "ペッパーレモン"},
-      {name: "オアシス", level: 500, food:"チキン南蛮"},
-      {name: "アルテリア", level:500, food: "ラーメン"},
-      {name: "クオーレ", level: 550, food: "タコライス"},
-      {name: "クラブハウス", level: 400, food: "黄金カレー"},
+      {name: "オアシス", price: 450, food:"南蛮定食"},
+      {name: "アルテリア", price:500, food: "カレーライス"},
+      {name: "クオーレ", price: 480, food: "カルボナーラ"},
+      {name: "クラブハウス", price:300, food: "ペッパーレモン"},
+      {name: "オアシス", price: 500, food:"チキン南蛮"},
+      {name: "アルテリア", price:500, food: "ラーメン"},
+      {name: "クオーレ", price: 550, food: "タコライス"},
+      {name: "クラブハウス", price: 400, food: "黄金カレー"},
     ];
 
     $(function() {
@@ -34,7 +34,7 @@
             let newRecord = new TestDataClass();
             newRecord
             .set("name", init_data[i].name)
-            .set("level", init_data[i].level)
+            .set("price", init_data[i].price)
             .set("food", init_data[i].food)
             .save();
             // bad busy loop...
@@ -58,12 +58,12 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg="<table><tr><th>name</th><th>Lvl</th><th>food</th></tr>";
+      let msg="<table><tr><th>name</th><th>price</th><th>food</th></tr>";
       for(let i=0; i<results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
         msg += "<td>" + results[i].name + "</td>";
-        msg += "<td class='num'>" + results[i].level + "</td>";
+        msg += "<td class='num'>" + results[i].price + "</td>";
         msg += "<td class='num'>" + results[i].food + "</td>";
         msg += "</tr>";
       }
@@ -83,11 +83,11 @@
       })
     }
 
-    function searchLevelLT(){
-      let level=parseInt($("#level").val(),10);
+    function searchpriceLT(){
+      let price=parseInt($("#price").val(),10);
       let TestDataClass=ncmb.DataStore(db);
       TestDataClass
-      .lessThan("level",level)
+      .lessThan("price",price)
       .fetchAll()
       .then(function(results){
         showResults(results);
@@ -109,14 +109,14 @@
     </script>
 </head>
 <body>
-  <h1>mBaaS search</h1>
+  <h1>"学食検索"</h1>
   <div>
     <label for="name">name:</label>
     <input id="name" type="text" placeholder=" name">
   </div>
   <div>
-    <label for="level">level:</label>
-    <input id="level" type="number" placeholder=" level">
+    <label for="price">price:</label>
+    <input id="price" type="number" placeholder=" price">
      <div>
     <label for="food">food:</label>
     <input id="food" type="text" placeholder="food">
@@ -125,7 +125,7 @@
     <button class="btn" onclick="fetchAll()">Fetch All</button>
    <button class="btn" onclick="searchName()">Name</button>
    <br>
-   <button class="btn" onclick="searchLevelLT()">Level &lt;</button>
+   <button class="btn" onclick="searchpriceLT()">price</button>
    <button class="btn" onclick="searchfood()">food</button>
   </div>
   <div id="message">initializing...</div>
